@@ -23,8 +23,8 @@
         <td>{{item.amount}}</td>
         <td>{{item.created.strftime("%m/%d")}}</td>
         <td>
-          <a href="/delete/{{item.id}}">delete</a>
           <a href="/update/{{item.id}}">edit</a>
+          <a href="/delete/{{item.id}}">delete</a>
         </td>
       </tr>
       {% endfor %}
