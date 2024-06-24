@@ -18,7 +18,7 @@
       </tr>
       {% for item in items %}
       <tr>
-        <td><input type="checkbox" id="select-all-checkbox"></td>
+        <td><input type="checkbox" class="item-checkbox"></td>
         <td>{{item.content}}</td>
         <td>{{item.amount}}</td>
         <td>{{item.created.strftime("%m/%d")}}</td>
@@ -36,4 +36,28 @@
   <input type="text" name="amount" placeholder="amount" value="" id="amount">
   <input type="submit" value="add item" id="btn_add">
 </form>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const selectAllCheckBox = document.getElementById("select-all-checkbox");
+    const itemCheckBoxes = document.querySelectorAll(".item-checkbox");
+    
+    selectAllCheckBox.addEventListener("change", function () {
+      itemCheckBoxes.forEach(function(checkbox) {
+        checkbox.checked = selectAllCheckBox.checked;
+      });
+    });
+    let unchecked = 0;
+    itemCheckBoxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function () {
+        let allChecked = true;
+        itemCheckBoxes.forEach(function (cb) {
+          if (!cb.checked) {
+            allChecked = false;
+          }
+        });
+        selectAllCheckBox.checked = allChecked;
+      });
+    });
+  });
+</script>
 {% endblock %}
