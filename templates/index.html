@@ -3,13 +3,14 @@
 <title>shopping list</title>
 {% endblock %}
 {% block body %}
+<h1 style="margin-bottom: 0px">shopping list</h1>
 <div class="content">
-  <h1>shopping list</h1>
 
   {% if items | length < 1 %} <h3>empty shopping list</h3>
     {% else %}
     <table>
       <tr>
+        <th><input type="checkbox" id="select-all-checkbox"></th>
         <th>item</th>
         <th>amount</th>
         <th>date</th>
@@ -17,6 +18,7 @@
       </tr>
       {% for item in items %}
       <tr>
+        <td><input type="checkbox" id="select-all-checkbox"></td>
         <td>{{item.content}}</td>
         <td>{{item.amount}}</td>
         <td>{{item.created.strftime("%m/%d")}}</td>
