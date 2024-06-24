@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>shopping list</title>
+{% endblock %}
+{% block body %}
+<div class="content">
+  <h1>shopping list</h1>
+
+  {% if items | length < 1 %} <h3>empty shopping list</h3>
+    {% else %}
+    <table>
+      <tr>
+        <th>item</th>
+        <th>amount</th>
+        <th>date</th>
+        <th>actions</th>
+      </tr>
+      {% for item in items %}
+      <tr>
+        <td>{{item.content}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.created.strftime("%m/%d")}}</td>
+        <td>
+          <a href="/delete/{{item.id}}">delete</a>
+          <a href="/update/{{item.id}}">edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+</div>
+<form action="/" method="POST" id="add_item_form">
+  <input type="text" name="content" placeholder="food item" value="" id="content">
+  <input type="text" name="amount" placeholder="amount" value="" id="amount">
+  <input type="submit" value="add item" id="btn_add">
+</form>
+{% endblock %}
